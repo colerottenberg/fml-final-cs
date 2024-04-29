@@ -79,14 +79,52 @@ Naive Bayes:
   - Convergence: Unique guarantee of convergence
 
 Fisher's Linear Discriminant Analysis:
-    * Type: Discriminative
-    * Mapper: $$y(x) = \begin{cases} 1 & \text{if } w^{T}x + w_{0} > 0 \\ 0 & \text{otherwise} \end{cases} $$
-    * Objective Function: $$ J(\mathbf{w}, w_{0}) = \frac{w^{T}S_{B}w}{w^{T}S_{W}w} $$, where $S_{B}$ is the between-class scatter matrix and $S_{W}$ is the within-class scatter matrix.
-    * Learning Algorithm: **Eigendecomposition** of $S_{W}^{-1}S_{B}$. This updates the weights.
-    * Assumptions: Assumes Gaussian distribution of data.
-    * Complexity: If sample size, N, is much larger than the dimensionality, d, then the complexity is $O(d^2 N)$, otherwise it is $O(d^3)$.
-    * Sensitivity: Sensitive to Outliers, hyperplane
-    * Convergence: Unique guarantee of convergence assuming inverse exists.
+  - Type: Discriminative
+  - Mapper: $$y(x) = \begin{cases} 1 & \text{if } w^{T}x + w_{0} > 0 \\ 0 & \text{otherwise} \end{cases} $$
+  - Objective Function: $$ J(\mathbf{w}, w_{0}) = \frac{w^{T}S_{B}w}{w^{T}S_{W}w} $$, where $S_{B}$ is the between-class scatter matrix and $S_{W}$ is the within-class scatter matrix.
+  - Learning Algorithm: **Eigendecomposition** of $S_{W}^{-1}S_{B}$. This updates the weights.
+  - Assumptions: Assumes Gaussian distribution of data.
+  - Complexity: If sample size, N, is much larger than the dimensionality, d, then the complexity is $O(d^2 N)$, otherwise it is $O(d^3)$.
+  - Sensitivity: Sensitive to Outliers, hyperplane
+  - Convergence: Unique guarantee of convergence assuming inverse exists.
 
 Perceptron:
-    * Type: Discriminative
+  - Type: Discriminative
+  - Mapper: $$y(x) = \phi(w^{T}x + w_{0})$$, where $\phi(x) = \begin{cases} 1 & \text{if } x > 0 \\ 0 & \text{otherwise} \end{cases}$
+  - Objective Function: $$ \mathcal{E}_{p}(\mathbf{w}, w_{0}) = -\sum_{n \in \mathcal{M}} t_{n}(\mathbf{w}^{T}\mathbf{x}_{n} + w_{0}) $$, where $\mathcal{M}$ is the set of misclassified points.
+  - Learning Algorithm: Stochastic Gradient Descent or Batch or Mini-Batch Gradient Descent
+  - Assumptions: Assumes linearly separable data.
+  - Complexity: $O(\frac{1}{\epsilon})$ where $\epsilon$ is the generalization error or the distance of the closest point to the decision boundary.
+  - Sensitivity: Sensitive to Outliers
+  - Convergence: Converges if data is linearly separable.
+
+Logistic Regression:
+  - Type: Probabilistic Discriminative
+  - Mapper: $$y(x) = \begin{cases} 1 & \text{if } \phi(w^{T}x + w_{0}) > 0.5 \\ 0 & \text{otherwise} \end{cases} $$, where $\phi(x) = \frac{1}{1 + e^{-x}}$
+  - Objective Function: $$J(\mathbf{w}, w_{0}) = -\sum_{n=1}^{N} t_{n} \log \phi(\mathbf{w}^{T}\mathbf{x}_{n} + w_{0}) + (1 - t_{n}) \log (1 - \phi(\mathbf{w}^{T}\mathbf{x}_{n} + w_{0}))$$, where $t_{n}$ is the target value.
+  - Learning Algorithm: Gradient Descent
+  - Assumptions: Assumes linearly separable data.
+  - Complexity: $O(d)$
+  - Sensitivity: Sensitive to Outliers
+  - Convergence: Guaranteed global minimum provided a stable learning rate $\eta$ given the cross-entropy loss function is convex.
+
+Hard-Margin SVM:
+  - Type: Discriminative
+  - Mapper: $$y(x) = \mathbf{w}^{T}\mathbf{x} + w_{0}$$
+  - Objective Function: $$\mathcal{L}(\mathbf{w}, w_{0}, \mathbf{a}) = \frac{1}{2}||\mathbf{w}||^{2} - \sum_{n=1}^{N} a_{n}(t_{n}(\mathbf{w}^{T}\mathbf{x}_{n} + w_{0}) - 1), \mathbf{a}_n \geq \forall n$$, where $\mathbf{a}$ is the vector of Lagrange multipliers.
+  - Learning Algorithm: Quadratic Programming
+  - Assumptions: Assumes linearly seperable in feature mapping.
+  - Complexity: $O(N^{3})$
+  - Sensitivity: Sensitive to Outliers near the margin
+  - Convergence: Guaranteed global minimum
+
+Soft-Margin SVM:
+  - Type: Discriminative
+  - Mapper: $$y(x) = \mathbf{w}^{T}\mathbf{x} + w_{0}$$
+  - Objective Function: $$\mathcal{L}(\mathbf{w}, w_{0}, \mathbf{a}, \mathbf{\mu}) = \frac{1}{2}||\mathbf{w}||^{2} + C\sum_{n=1}^{N} \xi_{n} - \sum_{n=1}^{N} a_{n}(t_{n}(\mathbf{w}^{T}\mathbf{x}_{n} + w_{0}) - 1) - \sum_{n=1}^{N} \mu_n \xi_n$$
+  - Learning Algorithm: Quadratic Programming
+  - Assumptions: Assumes linearly seperable in feature mapping.
+  - Complexity: $O(N^{3})$
+  - Sensitivity: Sensitive to Outliers near the margin
+  - Convergence: Guaranteed global minimum
+
