@@ -1,0 +1,289 @@
+\documentclass[10pt]{article}
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Page layout
+\geometry{a4paper, margin=0.5in}
+
+\begin{document}
+
+\begin{multicols}{2}
+\section*{Intro to ML}
+\begin{equation}
+    J(\omega) = \frac{1}{2} \lVert{t - X\omega} \rVert^{2}_{2}
+\end{equation}
+
+\begin{equation}
+    \frac{\partial J(\omega)}{\partial \omega} = 0, (X^{T}X)^{-1}X^{T}t = \omega
+\end{equation}
+
+% Mapper Function
+\begin{equation}
+    \label{eq:mapper}
+    f(\phi(x), \omega) = \omega^{T}\phi(x)
+\end{equation}
+
+% Feature Matrix and Target Vector
+\begin{equation} \label{eq:feature-target}
+    X = \begin{bmatrix} 
+    1 & x_{1} \\
+    1 & x_{2} \\
+    \vdots & \vdots \\
+    1 & x_{n}
+    \quad
+    \end{bmatrix}
+    t = \begin{bmatrix}
+    t_{1} \\
+    t_{2} \\
+    \vdots \\
+    t_{n}
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    % Ridge Regression
+    \label{eq:ridge}
+    (X^{T}X + \lambda I)^{-1}X^{T}t = \omega
+\end{equation}
+
+\section*{Experimental Design and Analysis}
+\subsection*{Basis Functions}
+
+\begin{equation}
+    \phi(x) = \begin{bmatrix}
+    \phi_{0}(x) \\
+    \phi_{1}(x) \\
+    \vdots \\
+    \phi_{M}(x)
+    \end{bmatrix}
+\end{equation}
+
+% Radial Basis Function
+\begin{equation}
+    % e 
+    \phi_{j}(x) = \exp -\frac{\lVert x - \mu \rVert^2}{2\sigma^{2}}
+\end{equation}
+
+% Polynomial Basis Function
+\begin{equation}
+    \phi_{j}(x) = x^{j}
+\end{equation}
+% Add more sections as needed
+
+\subsection*{Model Selection}
+% Lasso Regression
+\begin{equation}
+    \label{eq:lasso}
+    \min_{\omega} \frac{1}{2} \lVert{t - X\omega} \rVert^{2}_{2} + \lambda \lVert{\omega} \rVert_{1}
+\end{equation}
+
+% Elastic Net
+\begin{equation}
+    \label{eq:elastic-net}
+    \min_{\omega} \frac{1}{2} \lVert{t - X\omega} \rVert^{2}_{2} + \lambda_{1} \lVert{\omega} \rVert_{1} + \lambda_{2} \lVert{\omega} \rVert^{2}_{2}, \quad \lambda_{1} + \lambda_{2} = 1
+\end{equation}
+
+\subsection*{Metrics of Regression}
+% Mean Squared Error
+\begin{equation}
+    \label{eq:mse}
+    \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (t_{i} - \hat{t}_{i})^{2}
+\end{equation}
+
+% Mean Absolute Error
+\begin{equation}
+    \label{eq:mae}
+    \text{MAE} = \frac{1}{n} \sum_{i=1}^{n} \lvert t_{i} - \hat{t}_{i} \rvert
+\end{equation}
+
+% R-Squared
+\begin{equation}
+    \label{eq:r-squared}
+    R^{2} = 1 - \frac{\sum_{i=1}^{n} (t_{i} - \hat{t}_{i})^{2}}{\sum_{i=1}^{n} (t_{i} - \bar{t})^{2}}, \quad \bar{t} = \frac{1}{n} \sum_{i=1}^{n} t_{i}
+\end{equation}
+
+% Another R-Squared Equation
+\begin{equation}
+    \label{eq:r-squared-2}
+    R^{2} = 1 - \frac{\lVert{t - X\omega} \rVert^{2}_{2}}{\lVert{t - \bar{t}} \rVert^{2}_{2}}
+\end{equation}
+
+% Q-Q Plot
+
+\subsection*{Bayesian Learning}
+% Bayesian Interpretation of Least Squares Regression
+\begin{equation*}
+    P(C_i | x) = \frac{P(x | C_i)P(C_i)}{\sum_{j=1}^{K} P(x | C_j)P(C_j)}
+\end{equation*}
+
+\begin{equation*}
+    P(\lambda) = \frac{\beta_{\alpha}}{\Gamma(\alpha)} \lambda^{\alpha - 1} e^{-\beta \lambda}
+\end{equation*}
+
+
+% Conjucate Priors
+\begin{enumerate}
+    \item Gaussian-Gaussian
+    \vspace*{-8pt}
+    \item Gaussian-Exponential
+    \vspace*{-8pt}
+    \item Gaussian-Gamma
+    \vspace*{-8pt}
+    \item Gaussian-Beta
+    \vspace*{-8pt}
+    \item Gaussian-Dirichlet
+    \vspace*{-8pt}
+    \item Gaussian-Wishart
+    \vspace*{-8pt}
+    \item Gaussian-Inverse Wishart
+    \vspace*{-8pt}
+    \item Gaussian-Student's t
+    \vspace*{-8pt}
+    \item Gaussian-Laplace
+    \vspace*{-8pt}
+    \item Gaussian-Cauchy
+\end{enumerate}
+
+\section*{Generative Models}
+
+% Probabilistic Generative Model
+\begin{equation}
+    \label{eq:generative}
+    p(t | x, \omega) = \mathcal{N}(t ; \omega^{T}\phi(x), \beta^{-1})
+\end{equation}
+
+% Gaussian Mixture Model
+\begin{equation*}
+    p(x | \omega) = \sum_{k=1}^{K} \pi_{k} \mathcal{N}(x ; \mu_{k}, \Sigma_{k})
+\end{equation*}
+
+\begin{equation*}
+    \Theta = \{ \pi_{1}, \pi_{2}, \ldots, \pi_{K}, \mu_{1}, \mu_{2}, \ldots, \mu_{K}, \Sigma_{1}, \Sigma_{2}, \ldots, \Sigma_{K} \}, \quad \sum_{k=1}^{K} \pi_{k} = 1
+\end{equation*}
+
+% Expectation Maximization
+
+%Observed Data Likelihood
+\begin{equation*} \label{eq:observed-likelihood}
+    \mathcal{L}^0 = \prod_{i=1}^{N} \sum_{k=1}^{K} \pi_{k} \mathcal{N}(x_i ; \mu_{k}, \Sigma_{k})
+\end{equation*}
+
+% Log Likelihood
+\begin{equation*} \label{eq:log-likelihood}
+    \ln \mathcal{L}^0 = \sum_{i=1}^{N} \ln \sum_{k=1}^{K} \pi_{k} \mathcal{N}(x_i ; \mu_{k}, \Sigma_{k})
+\end{equation*}
+
+% Hidden Latent Variable
+\begin{equation*} \label{eq:hidden-latent}
+    z_{i} = \text{label of the Gaussian component for the $i^{th}$ data point $x_i$}
+\end{equation*}
+    
+\begin{equation*}
+    \mathcal{L}^c = \prod_{i=1}^{N} \pi_{z_{i}} \mathcal{N}(x_i ; \mu_{z_{i}}, \Sigma_{z_{i}})
+\end{equation*}
+
+% Expectation Step
+\begin{equation*}
+    Q(\Theta, \Theta^{(t)}) = \mathbb{E}_{z}[\ln p(x, z | \Theta) | X, \Theta^{(t)}]
+\end{equation*}
+
+\begin{equation*}
+    P(z_{i} | x_{i}, \Theta^{(t)}) = \frac{P(x_i | z_i, \Theta^t) P(z_i | \Theta^t)}{P(x_i | \Theta^t)} = \frac{\pi_{z_{i}} \mathcal{N}(x_i ; \mu_{z_{i}}, \Sigma_{z_{i}})}{\sum_{k=1}^{K} \pi_{k} \mathcal{N}(x_i ; \mu_{k}, \Sigma_{k})} 
+\end{equation*}
+
+\begin{equation*}
+    C_{ik} = P(z_i | x_i, \Theta^{(t)}) = \frac{\pi_{k} \mathcal{N}(x_i ; \mu_{k}, \Sigma_{k})}{\sum_{j=1}^{K} \pi_{j} \mathcal{N}(x_i ; \mu_{j}, \Sigma_{j})}
+\end{equation*}
+
+% Maximization Step
+\begin{equation*}
+    \text{arg}_{\Theta} \max Q(\Theta, \Theta^{(t)}) = \sum_{z_i}^{K} \ln(\mathcal{L}^c) P(z_i | x_i, \Theta^{(t)})
+\end{equation*}
+
+\begin{equation*}
+    = \sum_{z_i = 1}^{K} \ln(\prod_{i=1}^{N} \pi_{z_{i}} G(x_i ; \mu_{z_{i}}, \Sigma_{z_{i}})) P(z_i | x_i, \Theta^{(t)})
+\end{equation*}
+
+\begin{equation*}
+    = \sum_{k=1}^{K} \sum_{i=1}^{N} (\ln(\pi_{k}) + \ln(G(x_i ; \mu_{k}, \Sigma_{k}))) C_{ik}
+\end{equation*}
+
+\begin{equation*}
+    = \sum_{k=1}^{K} \sum_{i=1}^{N} (\ln(\pi_{k}) - \frac{d}{2}\ln(2\pi) - \frac{d}{2}\ln(\sigma_{k}^2) - \frac{1}{2\sigma_{k}^2}\lVert x_i - \mu_{k} \rVert^2_2) C_{ik}
+\end{equation*}
+
+\begin{equation*}
+    \mu_{K} = \frac{\sum_{i=1}^{N}\mathbf{x}_i C_{ik}}{\sum_{i=1}^{N} C_{ik}}
+\end{equation*}
+
+\begin{equation*}
+    \sigma_{k}^2 = \frac{\sum_{i=1}^{N} C_{ik} \lVert x_i - \mu_{k} \rVert^2_2}{d \sum_{i=1}^{N} C_{ik}}
+\end{equation*}
+
+\begin{equation*}
+    \pi_{k} = \frac{\sum_{i=1}^{N} C_{ik}}{N}
+\end{equation*}
+
+\section*{Non-Parametric Models}
+
+% K-means Clustering
+\begin{equation*}
+    J(\Theta, U) = \sum_{i=1}^{N} \sum_{k=1}^{K} u_{ik} d^2(x_i, \theta_k) = \sum_{i=1}^{N} \sum_{k=1}^{K} u_{ik} \lVert x_i - \theta_k \rVert^2_2
+\end{equation*}
+
+\begin{equation*}
+    \theta_k = \frac{\sum_{x_i \in C_k}^{} x_i}{N_k}
+\end{equation*}
+
+% Clustering Validatity Metrics
+\begin{enumerate}
+    \item $b_i$ = average distance from $x_i$ to all other points in the same cluster
+    \vspace*{-6pt}
+    \item $a_i$ = average distance from $x_i$ to all other points in the nearest cluster
+\end{enumerate}
+\begin{equation*}
+    \text{Silhouette} = \frac{1}{N} \sum_{i=1}^{N} \frac{b_i - a_i}{\max(a_i, b_i)}
+\end{equation*}
+
+% Rand Index
+\begin{enumerate}
+    \item $a$ = number of pairs of elements in $S$ that are in the same cluster and in the same set in $S'$
+    \vspace*{-6pt}
+    \item $b$ = number of pairs of elements in $S$ that are in different clusters and in different sets in $S'$
+    \vspace*{-6pt}
+    \item $c$ = number of pairs of elements in $S$ that are in the same cluster and in different sets in $S'$
+    \vspace*{-6pt}
+    \item $d$ = number of pairs of elements in $S$ that are in different clusters and in the same set in $S'$
+\end{enumerate}
+
+\begin{equation*}
+    \text{Rand Index} = \frac{a + b}{a + b + c + d}
+\end{equation*}
+
+% IoU or Jaccard Index
+\begin{equation*}
+    \text{Jaccard} = \frac{\text{TP}}{\text{TP} + \text{FP} + \text{FN}}
+\end{equation*}
+
+% K-nearest Neighbors
+
+% K-NN Algorithm
+\begin{equation*}
+   \text{Euclidean Distance} = \lVert x_1 - x_2 \rVert_2^2 = \sum_{i=1}^{d} (x_{1i} - x_{2i})^2
+\end{equation*}
+
+\begin{equation*}
+    \text{Manhattan Distance} = \lVert x_1 - x_2 \rVert_1 = \sum_{i=1}^{d} \lvert x_{1i} - x_{2i} \rvert
+\end{equation*}
+
+\begin{equation*}
+    \text{Mahalanobis Distance} = \lVert x_1 - x_2 \rVert_{\Sigma} = \sqrt{(x_1 - x_2)^T \Sigma^{-1} (x_1 - x_2)}
+\end{equation*}
+
+\end{multicols}
+
+\end{document}
