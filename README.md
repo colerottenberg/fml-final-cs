@@ -128,3 +128,5 @@ Soft-Margin SVM:
   - Sensitivity: Sensitive to Outliers near the margin
   - Convergence: Guaranteed global minimum
 
+### NAND Gate Problem
+The NAND Gate problem revolves around a 2D plane with two features, $x_{0}$ and $x_{1}$. The NAND gate is a binary classification problem where the output is 1 if the input is not 1, 1 and 1, 0 and 1, and 1 and 0. The output is 0 if the input is 0 and 0. The decision boundary is a hyperplane that separates the two classes. The hyperplane is defined by the equation $w_{0} + w_{1}x_{1} + w_{2}x_{2} = 0$. The weights are learned through the perceptron algorithm. The perceptron algorithm updates the weights based on the misclassified points. The weights are updated by $w_{i} = w_{i} + \eta(t - y)x_{i}$, where $\eta$ is the learning rate, $t$ is the target value, $y$ is the predicted value, and $x_{i}$ is the feature value.
