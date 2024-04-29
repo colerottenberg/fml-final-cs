@@ -69,6 +69,22 @@ Coverage over Lectures 15 through 29
 
 ## REVIEW
 
-Naive Bayes:
+### Naive Bayes:
     * Type: Generative
-    * Mapper: i = $$arg_{k} max P(C_{k} | \mathbf{x}) = arg_{k} max \frac{P(\mathbf{x} | C_{k})P(C_{k})}{P(\mathbf{X})}$$
+    * Mapper: i = $arg_{k} max P(C_{k} | \mathbf{x}) = arg_{k} max \frac{P(\mathbf{x} | C_{k})P(C_{k})}{P(\mathbf{X})}$
+    * Objective Function: Find the label that maximizes the posterior probability. This requires learning the data likelihood.
+    * Assumptions: Assume each class has a Gaussian distribution.
+    * Complexity: If we have K classes and d dimensions, the complexity is O(Kd).
+    * Sensitivity: Sensitive to Outliers
+    * Convergence: Unique guarantee of convergence
+
+### Fisher's Linear Discriminant Analysis:
+    * Type: Discriminative
+    * Mapper: $$ y(x) = \begin{cases} 1 & \text{if } w^{T}x + w_{0} > 0 \\ 0 & \text{otherwise} \end{cases} $$
+    * Objective Function: $$ J(\mathbf{w}, w_{0}) = \frac{w^{T}S_{B}w}{w^{T}S_{W}w} $$, where $S_{B}$ is the between-class scatter matrix and $S_{W}$ is the within-class scatter matrix.
+    * Learning Algorithm: **Eigendecomposition** of $S_{W}^{-1}S_{B}$. This updates the weights.
+    * Assumptions: Assumes Gaussian distribution of data.
+    * Complexity: If sample size, N, is much larger than the dimensionality, d, then the complexity is $O(d^2 N)$, otherwise it is $O(d^3)$.
+    * Sensitivity: Sensitive to Outliers, hyperplane
+    * Convergence: Unique guarantee of convergence assuming inverse exists.
+### Perceptron:
