@@ -16,9 +16,26 @@
 
 % Topic 1: Discriminative Functions for Classifiers
 \subsection*{Discriminative Functions for Classifiers}
+\textbf{Naive Bayes}
+\begin{equation}
+    P(y|x) = \frac{P(x|y)P(y)}{P(x)}
+\end{equation}
+
+\begin{equation}
+    P(x|y) = \prod_{i=1}^{n} P(x_i|y)
+\end{equation}
+
 \textbf{Fisher's Linear Discriminant Analysis}
 \begin{equation}
     w = S_W^{-1} (\mu_1 - \mu_2)
+\end{equation}
+
+\begin{equation}
+    S_W = \sum_{i=1}^{N} (x_i - \mu_{c(x_i)})(x_i - \mu_{c(x_i)})^T
+\end{equation}
+
+\begin{equation}
+    S_B = (\mu_1 - \mu_2)(\mu_1 - \mu_2)^T
 \end{equation}
 
 \textbf{Logistic Regression}
@@ -44,6 +61,60 @@
 \textbf{Kernel Function}
 \begin{equation}
     K(x, x') = \exp\left(-\frac{\|x - x'\|^2}{2\sigma^2}\right) % RBF Kernel
+\end{equation}
+
+\subsection*{Performance Metrics}
+\textbf{Confusion Matrix}
+\begin{equation}
+    \begin{bmatrix}
+        TP & FP \\
+        FN & TN
+    \end{bmatrix}
+\end{equation}
+
+\textbf{Precision}
+\begin{equation}
+    \frac{TP}{TP + FP}
+\end{equation}
+
+\textbf{Recall}
+\begin{equation}
+    \frac{TP}{TP + FN}
+\end{equation}
+
+\textbf{F1 Score}
+\begin{equation}
+    \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+\end{equation}
+
+\textbf{Accuracy}
+\begin{equation}
+    \frac{TP + TN}{TP + FP + FN + TN}
+\end{equation}
+
+\textbf{ROC Curve}
+\begin{equation}
+    \text{TPR} = \frac{TP}{TP + FN}
+\end{equation}
+
+\begin{equation}
+    \text{FPR} = \frac{FP}{FP + TN}
+\end{equation}
+
+\subsection*{Dimensionality Reduction}
+\textbf{PCA}
+\begin{equation}
+    \mathbf{X} = \mathbf{X} - \bar{\mathbf{X}}
+\end{equation}
+
+% Finding Principal Components used mean centered data
+\begin{equation}
+    \mathbf{Cov} = \frac{1}{N - 1} \mathbf{X}^T \mathbf{X}
+\end{equation}
+
+% Finding the Eigenvectors and Eigenvalues of the Covariance Matrix
+\begin{equation}
+    \mathbf{Cov} \mathbf{v} = \lambda \mathbf{v}
 \end{equation}
 
 \end{multicols}
