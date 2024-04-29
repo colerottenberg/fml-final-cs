@@ -78,11 +78,16 @@ Coverage over Lectures 15 through 29
     18. Determining whether to gather more data
 5. Deep Learning (Lecture 28-29)
     1. Deep learning vs machine learning
+        - **Deep Learning** is a subset of machine learning that uses neural networks with multiple layers to learn complex patterns in data. It is particularly well-suited for tasks such as image recognition, speech recognition, and natural language processing.
     2. Convolutional layer vs dense layer
+        - **Convolutional Layer**: A convolutional layer applies a filter to the input data to extract features. It is commonly used in image processing tasks. This filter is also a learnable parameter.
     3. Convolutional Neural Networks (CNNs)
     4. Pooling layers
+        - **Pooling Layer**: A pooling layer reduces the spatial dimensions of the input data by downsampling. This helps reduce the computational complexity of the network and makes it more robust to variations in the input.
     5. Strides
+        - **Strides**: Strides refer to the number of pixels the filter moves across the input data. A stride of 1 means the filter moves one pixel at a time, while a stride of 2 means the filter moves two pixels at a time.
     6. Transfer learning
+        - **Transfer Learning**: Transfer learning is a technique where we use a pre-trained model on a similar task as a starting point for training a new model. This can help speed up training and improve performance, especially when we have limited data. Transfer Learning can also be useful when we have a small dataset and we want to leverage the knowledge learned from a larger dataset.
 
 ### Assignments to Review:
 - HW3
