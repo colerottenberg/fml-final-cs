@@ -70,13 +70,13 @@ Coverage over Lectures 15 through 29
 ## REVIEW
 
 Naive Bayes:
-    - Type: Generative
-    - Mapper: i = $arg_{k} max P(C_{k} | \mathbf{x}) = arg_{k} max \frac{P(\mathbf{x} | C_{k})P(C_{k})}{P(\mathbf{X})}$
-    - Objective Function: Find the label that maximizes the posterior probability. This requires learning the data likelihood.
-    - Assumptions: Assume each class has a Gaussian distribution.
-    - Complexity: If we have K classes and d dimensions, the complexity is O(Kd).
-    - Sensitivity: Sensitive to Outliers
-    - Convergence: Unique guarantee of convergence
+  - Type: Generative
+  - Mapper: i = $arg_{k} max P(C_{k} | \mathbf{x}) = arg_{k} max \frac{P(\mathbf{x} | C_{k})P(C_{k})}{P(\mathbf{X})}$
+  - Objective Function: Find the label that maximizes the posterior probability. This requires learning the data likelihood.
+  - Assumptions: Assume each class has a Gaussian distribution.
+  - Complexity: If we have K classes and d dimensions, the complexity is O(Kd).
+  - Sensitivity: Sensitive to Outliers
+  - Convergence: Unique guarantee of convergence
 
 Fisher's Linear Discriminant Analysis:
     * Type: Discriminative
