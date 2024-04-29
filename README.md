@@ -91,7 +91,7 @@ Fisher's Linear Discriminant Analysis:
 Perceptron:
   - Type: Discriminative
   - Mapper: $$y(x) = \phi(w^{T}x + w_{0})$$, where $\phi(x) = \begin{cases} 1 & \text{if } x > 0 \\ 0 & \text{otherwise} \end{cases}$
-  - Objective Function: $$ \mathcal{E}_{p}(\mathbf{w}, w_{0}) = -\sum_{n \in \mathcal{M}} t_{n}(\mathbf{w}^{T}\mathbf{x}_{n} + w_{0}) $$, where $\mathcal{M}$ is the set of misclassified points.
+  - Objective Function: $$ \mathbf{E}_{p}(\mathbf{w}, w_{0}) = -\sum_{n \in \mathbf{M}} t_{n}(\mathbf{w}^{T}\mathbf{x}_{n} + w_{0})$$, where $\mathbf{M}$ is the set of misclassified points.
   - Learning Algorithm: Stochastic Gradient Descent or Batch or Mini-Batch Gradient Descent
   - Assumptions: Assumes linearly separable data.
   - Complexity: $O(\frac{1}{\epsilon})$ where $\epsilon$ is the generalization error or the distance of the closest point to the decision boundary.
