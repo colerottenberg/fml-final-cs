@@ -26,31 +26,55 @@ Coverage over Lectures 15 through 29
     1. Curse of Dimensionality
         - The curse of dimensionality refers to the phenomenon where the number of features in a dataset increases, the volume of the feature space increases exponentially. This leads to sparsity in the data and can lead to overfitting.
     2. Principal Component Analysis(PCA)
+        - To find PCA of a dataset, we first center the data by subtracting the mean. Then, we find the covariance matrix of the centered data. We then find the eigenvectors and eigenvalues of the covariance matrix. The eigenvectors are the principal components and the eigenvalues are the variance along the principal components. We can then project the data onto the principal components to reduce the dimensionality.
     3. PCA vs LDA (unsupervised vs supervised)
+        - PCA is an unsupervised method that finds the principal components of the data. LDA is a supervised method that finds the linear discriminants that maximize the separation between classes.
     4. Multidimensional Scaling (MDS)
+        - MDS is a technique that finds a low-dimensional representation of the data that preserves the pairwise distances between the data points. We find MDS using eigendecomposition of the distance matrix.
     5. ISOMAP (Isometric Mapping)
+        - ISOMAP is similar to MDS but it uses the geodesic distance between points instead of the Euclidean distance. It uses the shortest path between points on a graph to find the distance between points.
     6. Locally Linear Embedding (LLE)
+        - LLE is a technique that finds a low-dimensional representation of the data that preserves the local relationships between the data points. It does this by finding the weights that best reconstruct each point from its neighbors.
 4. Artificial Neural Networks (Lecture 25 - 29)
     1. Multi-Layer Perceptron (MLP)
     2. Universal Approximation Theorem
     3. Activation functions: ReLU, leaky ReLu, sigmoid, tanh, softmax, linear, etc.
+        - **ReLU**: $f(x) = max(0, x)$
+        - **Leaky ReLU**: $f(x) = max(0.01x, x)$
+        - **Sigmoid**: $f(x) = \frac{1}{1 + e^{-x}}$
+        - **Tanh**: $f(x) = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}$
+        - **Softmax**: $f(x) = \frac{e^{x_{i}}}{\sum_{j} e^{x_{j}}}$
+        - **Linear**: $f(x) = x$
     4. Backpropagation
+        - Backpropagation is a technique used to train neural networks. It involves computing the gradient of the loss function with respect to the weights of the network using the chain rule. The gradients are then used to update the weights using an optimization algorithm such as gradient descent.
     5. Common challenges in training ANNs and strategies to address them
     6. Vanishing/exploding gradients
+        - With deep neural networks, the gradienet can become very small or very large as it is backpropagated through the network. For activation functions like sigmoid and tanh, the gradient can vanish as it is backpropagated through the network. For activation functions like ReLU, the gradient can explode as it is backpropagated through the network. This can make training the network difficult. Strategies to address this include using different activation functions, using batch normalization, and using techniques like residual connections.
     7. Learning curves
     8. Network architecture
     9. Output Encoding: integer, one-hot, binary
+        - **Integer Encoding**: Assigns a unique integer to each class label.
+        - **One-Hot Encoding**: Represents each class label as a binary vector where only one element is 1 and the rest are 0.
+        - **Binary Encoding**: Represents each class label as a binary vector where each element is either 0 or 1.
     10. Optimization Techniques with Gradient Descent
         * Accelerated Gradient Descent strategies: momentum, Nesterrov's momentum
         * Adaptive Learning Rate: Adam
         * Learning rate schedulers
     11. Early stopping criteria
+        - We can enable certain callbacks in the training process to stop the training early if certain conditions are met. For example, we can stop training if the validation loss does not improve for a certain number of epochs.
     12. Online vs Batch vs Mini-Batch learning
+        - **Online Learning**: Update the weights after each training example. This is more sporadic and can be noisy.
+        - **Batch Learning**: Update the weights after all training examples have been seen. This can be slow and requires a lot of memory.
+        - **Mini-Batch Learning**: Update the weights after a subset of the training examples have been seen. This is a compromise between online and batch learning.
     13. Weight initializations strategies
+        - **Random Initialization**: Initialize the weights randomly from a distribution such as a normal distribution or a uniform distribution.
+        - **Xavier Initialization**: Initialize the weights using a normal distribution with mean 0 and variance $\frac{1}{n_{in}}$, where $n_{in}$ is the number of input units to the neuron.
     14. Stopping Criteria
     15. Data scaling/normalization
     16. Network pruning via regularization and dropout
+        - **Dropout**: Dropout is a regularization technique where we randomly set a fraction of the neurons in the network to zero during training. This helps prevent overfitting by forcing the network to learn redundant representations. This leads to lower accuracy performance on training than validation.
     17. Batch normalization
+        - **Batch Normalization**: Batch normalization is a technique used to normalize the inputs to a layer in a neural network. This helps stabilize the training process and can lead to faster convergence. It can also act as a form of regularization.
     18. Determining whether to gather more data
 5. Deep Learning (Lecture 28-29)
     1. Deep learning vs machine learning
