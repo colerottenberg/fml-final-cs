@@ -24,6 +24,7 @@ Coverage over Lectures 15 through 29
     7. Soft Margin SVM
 3. Dimensionality Reduction (Lecture 22 - 25)
     1. Curse of Dimensionality
+        - The curse of dimensionality refers to the phenomenon where the number of features in a dataset increases, the volume of the feature space increases exponentially. This leads to sparsity in the data and can lead to overfitting.
     2. Principal Component Analysis(PCA)
     3. PCA vs LDA (unsupervised vs supervised)
     4. Multidimensional Scaling (MDS)
