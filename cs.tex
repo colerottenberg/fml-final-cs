@@ -48,7 +48,7 @@
 
 \textbf{Perceptron Algorithm}
 \begin{equation}
-    w^{(t+1)} = w^{(t)} + \eta (y - \hat{y}) x
+    \mathcal{E}_p (\mathbf{w}, w_0) = -\sum_{n \in M} t_n(\mathbf{w} \cdot \mathbf{x}_n + w_0), \text{ where } M \text{ is misclass} 
 \end{equation}
 
 \textbf{Gradient Descent}
@@ -56,12 +56,34 @@
     \theta := \theta - \alpha \nabla_{\theta} J(\theta)
 \end{equation}
 
-% Topic 2: Kernel Machine
-\subsection*{Kernel Machine}
-\textbf{Kernel Function}
+\subsection*{Support Vector Machines}
+% Topic 2: Support Vector Machines
+% Kernel Machines
+\textbf{Kernel Machines}
+% RBF or Radial Basis Function Kernel
 \begin{equation}
-    K(x, x') = \exp\left(-\frac{\|x - x'\|^2}{2\sigma^2}\right) % RBF Kernel
+    K(x, x') = \exp(-\frac{\|x - x'\|^2}{2\sigma^2}) = \exp(-\gamma \|x - x'\|^2)
 \end{equation}
+
+\begin{equation}
+    \gamma = \frac{1}{2\sigma^2}
+\end{equation}
+
+\textbf{Hard Margin SVM}
+\begin{equation}
+    \min_{w, b} \frac{1}{2} \|w\|^2 \text{ s.t. } y_i(w^Tx_i + b) \geq 1
+\end{equation}
+
+\begin{equation}
+    \mathcal{L}(\mathbf{w}, w_0, \alpha) = \frac{1}{2} \|\mathbf{w}\|^2 - \sum_{i=1}^{N} \alpha_i[t_i(\mathbf{w}^T\mathbf{x}_i + w_0) - 1]
+\end{equation}}
+
+\textbf{Soft Margin SVM}
+{\small
+    \begin{equation}
+        \mathcal{L}(\mathbf{w}, w_0, \mathbf{\alpha}, \mathbf{\mu}) = \frac{1}{2} \|\mathbf{w}\|^2 + C \sum_{i=1}^{N} \xi_i - \sum_{i=1}^{N} \alpha_i[t_i(\mathbf{w} \cdot \mathbf{x}_i + w_0) - 1 + \xi_i] - \sum_{i=1}^{N} \mu_i \xi_i
+    \end{equation}
+}
 
 \subsection*{Performance Metrics}
 \textbf{Confusion Matrix}
