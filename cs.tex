@@ -57,10 +57,78 @@
     \mathcal{E}_p (\mathbf{w}, w_0) = -\sum_{n \in M} t_n(\mathbf{w} \cdot \mathbf{x}_n + w_0), \text{ where } M \text{ is misclass} 
 \end{equation}
 
+\textbf{MLP}
+\begin{multline}
+    \begin{bmatrix}
+        y_1 \\
+        y_2 \\
+        \vdots \\
+        y_m
+    \end{bmatrix} = \phi(\mathbf{W}^T \mathbf{X} + \mathbf{b}) \\
+    = \phi(\mathbf{W}^T \phi(\mathbf{V}^T \mathbf{X} + \mathbf{c}) + \mathbf{b})
+\end{multline}
+
 \textbf{Gradient Descent}
 \begin{equation}
-    \theta := \theta - \alpha \nabla_{\theta} J(\theta)
+    \mathbf{w}^{(t+1)} = \mathbf{w}^{(t)} - \eta \nabla J(\mathbf{w}^{(t)})
 \end{equation}
+
+\subsection*{Regularization \& Optimization}
+
+\subsubsection*{Pooling Techniques}
+
+\textbf{Max Pooling}
+\begin{equation}
+    \text{Max Pooling: } y_{i,j} = \max_{m,n} x_{i+m, j+n}
+\end{equation}
+
+\textbf{Average Pooling}
+\begin{equation}
+    \text{Average Pooling: } y_{i,j} = \frac{1}{mn} \sum_{m,n} x_{i+m, j+n}
+\end{equation}
+
+\subsubsection*{Gradient Descent Methods}
+Gradient descent methods are foundational in optimizing neural network parameters, minimizing the loss function iteratively.
+
+\textbf{Stochastic Gradient Descent (SGD)}
+\begin{equation}
+    \mathbf{w}^{(t+1)} = \mathbf{w}^{(t)} - \eta \nabla J(\mathbf{w}^{(t)}, \mathbf{x}_n, t_n)
+\end{equation}
+Where $\mathbf{x}_n$ is a randomly selected training example, $\eta$ is the learning rate.
+
+\textbf{Nesterov's Accelerated Gradient (NAG)}
+\begin{equation}
+    \mathbf{v}^{(t+1)} = \gamma \mathbf{v}^{(t)} + \eta \nabla J(\mathbf{w}^{(t)} - \gamma \mathbf{v}^{(t)})
+\end{equation}
+Where $\gamma$ is the momentum term.
+
+\subsubsection*{Adaptive Moment Estimation Methods}
+These methods adapt the learning rates based on lower-order moments of gradients and provide an efficient way to converge faster.
+
+\textbf{Adam}
+\begin{equation}
+    m^{(t+1)} = \beta_1 m^{(t)} + (1 - \beta_1) \nabla J(\mathbf{w}^{(t)})
+\end{equation}
+
+\begin{equation}
+    v^{(t+1)} = \beta_2 v^{(t)} + (1 - \beta_2) \nabla J(\mathbf{w}^{(t)})^2
+\end{equation}
+
+\begin{equation}
+    \mathbf{w}^{(t+1)} = \mathbf{w}^{(t)} - \eta \frac{m^{(t+1)}}{\sqrt{v^{(t+1)} + \epsilon}}
+\end{equation}
+
+Where $m$ and $v$ are the first and second moment estimates, respectively, $\beta_1$ and $\beta_2$ are the decay rates, and $\epsilon$ is a small constant to prevent division by zero.
+
+\textbf{Nadam}
+\begin{equation}
+    m^{(t+1)} = \beta_1 m^{(t)} + (1 - \beta_1) \nabla J(\mathbf{w}^{(t)})
+\end{equation}
+\begin{equation}
+    v^{(t+1)} = \beta_2 v^{(t)} + (1 - \beta_2) \nabla J(\mathbf{w}^{(t)})^2
+\end{equation}
+Where $m$ and $v$ are the first and second moment estimates, respectively, $\beta_1$ and $\beta_2$ are the decay rates, and $\epsilon$ is a small constant to prevent division by zero.
+
 
 \subsection*{Support Vector Machines}
 % Topic 2: Support Vector Machines
@@ -136,8 +204,15 @@
 
 % Finding Principal Components used mean centered data
 \begin{equation}
-    \mathbf{Cov} = \frac{1}{N - 1} \mathbf{X}^T \mathbf{X}
+    \mathbf{Cov} = \frac{1}{N} \mathbf{X}^T \mathbf{X}
 \end{equation}
+
+\subsubsection*{Eigenvectors and Eigenvalues}
+Eigendeomposition of the $3 \times 3$ covariance matrix.
+\begin{equation}
+    \mathbf{Cov} = \mathbf{Q} \mathbf{\Lambda} \mathbf{Q}^T
+\end{equation}
+Where $\mathbf{Q}$ is the matrix of eigenvectors and $\mathbf{\Lambda}$ is the diagonal matrix of eigenvalues.
 
 % Finding the Eigenvectors and Eigenvalues of the Covariance Matrix
 \begin{equation}
@@ -148,6 +223,49 @@
     C_{ov} = \mathbf{E}[\mathbf{XX^T}]
 \end{equation}
 When $\mathbf{X}$ is mean-centered.
+
+\subsubsection*{Manifold Learning}
+\begin{equation}
+    \mathbf{d}_{Euclidean} = \sqrt{\sum_{i=1}^{N} (x_i - x_j)^2}
+\end{equation}
+
+\begin{equation}
+    \mathbf{d}_{Geodesic} = \min_{\mathbf{p}} \sum_{i=1}^{N-1} \sqrt{\sum_{j=1}^{N} (p_{i,j} - p_{i+1,j})^2}
+    \label{eq:geodesic}
+\end{equation}
+
+\begin{equation}
+    \mathbf{D} = \begin{bmatrix}
+        d_{1,1} & d_{1,2} & \cdots & d_{1,N} \\
+        d_{2,1} & d_{2,2} & \cdots & d_{2,N} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        d_{N,1} & d_{N,2} & \cdots & d_{N,N} \\
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    \mathbf{D}^2 = \begin{bmatrix}
+        d_{1,1}^2 & d_{1,2}^2 & \cdots & d_{1,N}^2 \\
+        d_{2,1}^2 & d_{2,2}^2 & \cdots & d_{2,N}^2 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        d_{N,1}^2 & d_{N,2}^2 & \cdots & d_{N,N}^2 \\
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    d_{i,j}^2 = b_{i,i} + b_{j,j} - 2b_{i,j}
+\end{equation}
+Where $b_{i,j}$ is the element of the matrix $\mathbf{B}$.
+
+\begin{equation}
+    \mathbf{B} = -\frac{1}{2} \mathbf{J} \mathbf{D}^2 \mathbf{J}
+\end{equation}
+
+\begin{equation}
+    \mathbf{J} = \mathbf{I} - \frac{1}{N} \mathbf{1} \mathbf{1}^T
+\end{equation}
+Where $\mathbf{I}$ is the identity matrix and $\mathbf{1}$ is a vector of ones and $\mathbf{11}^T$ is the outer product of $\mathbf{1}$.
+
 
 \end{multicols}
 \end{document}
