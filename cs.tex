@@ -30,9 +30,10 @@
     w = S_W^{-1} (\mu_1 - \mu_2)
 \end{equation}
 
-\begin{equation}
-    S_W = \sum_{i=1}^{N} (x_i - \mu_{c(x_i)})(x_i - \mu_{c(x_i)})^T
-\end{equation}
+\begin{multline}
+    S_W = \frac{1}{N_1} \sum_{n \in C_1} (x_n - \mu_1)(x_n - \mu_1)^T \\
+    + \frac{1}{N_2} \sum_{n \in C_2} (x_n - \mu_2)(x_n - \mu_2)^T
+\end{multline}
 
 \begin{equation}
     S_B = (\mu_1 - \mu_2)(\mu_1 - \mu_2)^T
@@ -84,11 +85,10 @@
 \end{equation}
 
 \textbf{Soft Margin SVM}
-{\small
-    \begin{equation}
-        \mathcal{L}(\mathbf{w}, w_0, \mathbf{\alpha}, \mathbf{\mu}) = \frac{1}{2} \|\mathbf{w}\|^2 + C \sum_{i=1}^{N} \xi_i - \sum_{i=1}^{N} \alpha_i[t_i(\mathbf{w} \cdot \mathbf{x}_i + w_0) - 1 + \xi_i] - \sum_{i=1}^{N} \mu_i \xi_i
-    \end{equation}
-}
+\begin{multline}
+    \mathcal{L}(\mathbf{w}, w_0, \mathbf{\alpha}, \mathbf{\mu}) = \frac{1}{2} \|\mathbf{w}\|^2 + C \sum_{i=1}^{N} \xi_i - \\
+    \sum_{i=1}^{N} \alpha_i[t_i(\mathbf{w} \cdot \mathbf{x}_i + w_0) - 1 + \xi_i] - \sum_{i=1}^{N} \mu_i \xi_i
+\end{multline}
 
 \subsection*{Performance Metrics}
 \textbf{Confusion Matrix}
