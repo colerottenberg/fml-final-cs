@@ -40,8 +40,13 @@
 
 \textbf{Logistic Regression}
 \begin{equation}
-    \sigma(z) = \frac{1}{1 + e^{-z}}
+    \phi(x) = \frac{1}{1 + e^{-x}}
 \end{equation}
+
+\begin{equation}
+    y(x) = \phi(w^T x)
+\end{equation}
+
 \begin{equation}
     J(\theta) = -\frac{1}{m} [y^T\log(\sigma(X\theta)) + (1-y)^T\log(1-\sigma(X\theta))]
 \end{equation}
