@@ -87,8 +87,13 @@
     \text{Average Pooling: } y_{i,j} = \frac{1}{mn} \sum_{m,n} x_{i+m, j+n}
 \end{equation}
 
+\textbf{Batch Normalization}
+\begin{equation}
+    \hat{x} = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}}
+\end{equation}
+Where $\mu$ is the mean, $\sigma^2$ is the variance, and $\epsilon$ is a small constant to prevent division by zero.
+
 \subsubsection*{Gradient Descent Methods}
-Gradient descent methods are foundational in optimizing neural network parameters, minimizing the loss function iteratively.
 
 \textbf{Stochastic Gradient Descent (SGD)}
 \begin{equation}
@@ -103,7 +108,6 @@ Where $\mathbf{x}_n$ is a randomly selected training example, $\eta$ is the lear
 Where $\gamma$ is the momentum term.
 
 \subsubsection*{Adaptive Moment Estimation Methods}
-These methods adapt the learning rates based on lower-order moments of gradients and provide an efficient way to converge faster.
 
 \textbf{Adam}
 \begin{equation}
